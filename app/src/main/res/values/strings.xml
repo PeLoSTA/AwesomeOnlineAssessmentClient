@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">OnlineAssessmentPrototype</string>
+    <string name="app_name">Awesome Mobile Exam App</string>
+    <string name="title_activity_pass_exam">ActivityPassExam</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Frage: %1$d</string>
+    <string name="title_activity_pass_exam2">ActivityPassExam2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
