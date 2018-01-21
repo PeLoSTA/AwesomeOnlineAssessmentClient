@@ -36,10 +36,8 @@ public class SingleQuestionAdapter extends ArrayAdapter<SingleAnswerDTO> {
 
         convertView = inflater.inflate(R.layout.question_row, parent, false);
 
-        TextView textviewAnswer = convertView.findViewById(R.id.textViewAnswer);
         CheckBox cb = convertView.findViewById(R.id.checkBoxAnswer);
-
-        textviewAnswer.setText(this.items[position].getAnswer());
+        cb.setText(this.items[position].getAnswer());
         cb.setChecked(false);
 
         return convertView;

@@ -5,32 +5,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context="de.peterloos.onlineassessmentprototype.fragments.FragmentQuestion">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+        android:layout_margin="12dp"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textviewQuestionHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="4dp"
+            android:textSize="20sp"   />
+
+        <View
+            android:id="@+id/upperHorizontalRuler"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@+id/textviewTitle"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888888"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/textviewQuestion"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="4dp"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/lowerHorizontalRuler"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_above="@+id/textviewSelectedExam"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="#888888"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <ListView
             android:id="@+id/listviewAnswers"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#CCCCCC" />
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
