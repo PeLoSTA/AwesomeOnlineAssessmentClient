@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.Locale;
+
 import de.peterloos.onlineassessmentprototype.Globals;
 import de.peterloos.onlineassessmentprototype.R;
 import de.peterloos.onlineassessmentprototype.adapters.SingleQuestionAdapter;
@@ -58,18 +60,20 @@ public class FragmentQuestion extends Fragment {
         }
         else {
             question = new SingleQuestionDescriptor();
-            question.setQuestion("Internal Error");
-            question.setNumberAnswers(3);
-            question.setAnswers(new String[] {"","", ""});
-            question.setCorrectAnswer(1);
+            question.setQuestionNumber(0);
+            question.setQuestion("INTERNAL ERROR");
+            question.setNumberAnswers(1);
+            question.setAnswers(new String[] {"NO ANSWER"});
+            question.setCorrectAnswer(0);
             question.setUsersAnswer(-1);
         }
 
         // =============================================================================
 
         // setup UI
-        // this.textviewQuestionHeader = view.findViewById(R.id.textviewQuestionHeader);
-        this.textviewQuestionHeader.setText("EINE FRAGE");
+        int number = question.getQuestionNumber();
+        String header = String.format(Locale.getDefault(),"Frage %d:", number);
+        this.textviewQuestionHeader.setText(header);
         this.textviewQuestion.setText(question.getQuestion());
 
         SingleAnswerDTO[] dtoAnswers = new SingleAnswerDTO[question.getNumberAnswers()];
@@ -81,7 +85,6 @@ public class FragmentQuestion extends Fragment {
         SingleQuestionAdapter adapter = new SingleQuestionAdapter(this.getActivity(), dtoAnswers);
         this.listviewAnswers.setAdapter(adapter);
     }
-
 
 //    @Override
 //    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

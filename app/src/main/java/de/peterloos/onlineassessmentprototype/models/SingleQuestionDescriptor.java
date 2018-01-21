@@ -24,6 +24,7 @@ public class SingleQuestionDescriptor implements Parcelable {
             };
 
     // member data
+    private int questionNumber;
     private String question;
     private int numberAnswers;
     private String[] answers;
@@ -39,11 +40,21 @@ public class SingleQuestionDescriptor implements Parcelable {
      * c'tor from Parcel, reads back fields IN THE ORDER they were written
      */
     public SingleQuestionDescriptor(Parcel pc) {
+        this.questionNumber = pc.readInt();
         this.question = pc.readString();
         this.numberAnswers = pc.readInt();
         pc.readStringArray(this.answers);
         this.correctAnswer = pc.readInt();
         this.correctAnswer = pc.readInt();
+    }
+
+    // getter / setter methods
+    public int getQuestionNumber() {
+        return questionNumber;
+    }
+
+    public void setQuestionNumber(int questionNumber) {
+        this.questionNumber = questionNumber;
     }
 
     public String getQuestion() {
@@ -93,6 +104,7 @@ public class SingleQuestionDescriptor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeInt(this.questionNumber);
         parcel.writeString(this.question);
         parcel.writeInt(this.numberAnswers);
         parcel.writeStringArray(this.answers);
