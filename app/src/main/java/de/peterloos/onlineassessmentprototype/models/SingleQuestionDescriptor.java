@@ -32,6 +32,7 @@ public class SingleQuestionDescriptor implements Parcelable {
 
     // no-args c'tor
     public SingleQuestionDescriptor() {
+        this.usersAnswer = -1;
     }
 
     /**

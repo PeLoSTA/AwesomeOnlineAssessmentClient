@@ -19,7 +19,7 @@ import de.peterloos.onlineassessmentprototype.models.SingleAnswerDTO;
 
 public class SingleQuestionAdapter extends ArrayAdapter<SingleAnswerDTO> {
 
-    private SingleAnswerDTO[] items = null;
+    private SingleAnswerDTO[] items;
     private Context context;
 
     public SingleQuestionAdapter(@NonNull Context context, @NonNull SingleAnswerDTO[] items) {

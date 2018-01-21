@@ -1,5 +1,8 @@
 package de.peterloos.onlineassessmentprototype.activities;
 
+// Link zu einer Seite mit "europa quiz fragen"
+// http://www.europa.augsburg.de/fileadmin/europa/dat/pdf/Fragen_und_Antworten.pdf
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +16,6 @@ import de.peterloos.onlineassessmentprototype.R;
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

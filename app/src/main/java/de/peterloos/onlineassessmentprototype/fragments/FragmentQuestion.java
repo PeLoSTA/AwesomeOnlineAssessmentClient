@@ -3,12 +3,14 @@ package de.peterloos.onlineassessmentprototype.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import de.peterloos.onlineassessmentprototype.Globals;
 import de.peterloos.onlineassessmentprototype.R;
 import de.peterloos.onlineassessmentprototype.adapters.SingleQuestionAdapter;
 import de.peterloos.onlineassessmentprototype.models.SingleQuestionDescriptor;
@@ -51,6 +53,8 @@ public class FragmentQuestion extends Fragment {
 
         if (bundle != null) {
             question = bundle.getParcelable("SingleQuestionDescriptor");
+
+            Log.v(Globals.TAG, "FragmentQuestion ==> Frage " + question.getQuestion());
         }
         else {
             question = new SingleQuestionDescriptor();

@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import de.peterloos.onlineassessmentprototype.R;
-import de.peterloos.onlineassessmentprototype.adapters.AssessmentPagerAdapter;
+import de.peterloos.onlineassessmentprototype.adapters.SingleAssessmentPagerAdapter;
 
 public class ActivityPassExam extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class ActivityPassExam extends AppCompatActivity {
      * may be best to switch to a android.support.v4.app.FragmentStatePagerAdapter
      */
     private ViewPager viewPager;
-    private AssessmentPagerAdapter pagerAdapter;
+    private SingleAssessmentPagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class ActivityPassExam extends AppCompatActivity {
         this.setSupportActionBar(toolbar);
 
         // create the adapter that will return a fragment for each question
-        this.pagerAdapter = new AssessmentPagerAdapter(this.getSupportFragmentManager());
+        this.pagerAdapter = new SingleAssessmentPagerAdapter(this.getSupportFragmentManager());
 
         // setup the ViewPager with the question adapter
         this.viewPager = (ViewPager) this.findViewById(R.id.container);
