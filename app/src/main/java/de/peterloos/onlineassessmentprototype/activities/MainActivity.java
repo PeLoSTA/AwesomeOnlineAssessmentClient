@@ -3,6 +3,14 @@ package de.peterloos.onlineassessmentprototype.activities;
 // Link zu einer Seite mit "europa quiz fragen"
 // http://www.europa.augsburg.de/fileadmin/europa/dat/pdf/Fragen_und_Antworten.pdf
 
+// http://simpledeveloper.com/how-to-communicate-between-fragments-and-activities/
+
+// https://stackoverflow.com/questions/5764029/android-how-to-get-the-event-when-checkbox-in-listview-is-clicked
+
+// http://fundoocode.net/android-listview-checkbox-example-onitemclicklistener-and-onclicklistener/
+
+
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
