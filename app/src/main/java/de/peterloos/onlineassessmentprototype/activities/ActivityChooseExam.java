@@ -74,7 +74,7 @@ public class ActivityChooseExam extends AppCompatActivity
                 ActivityChooseExam.this).create();
         alertDialog.setTitle("Start Exam"); //set title
         alertDialog.setMessage("Do you want to start the selected exam Math 1?"); //set Message
-        alertDialog.setIcon(R.drawable.ic_launcher_background); //set icon/image
+        // alertDialog.setIcon(R.drawable.ic_launcher_background); //set icon/image
 
 
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
