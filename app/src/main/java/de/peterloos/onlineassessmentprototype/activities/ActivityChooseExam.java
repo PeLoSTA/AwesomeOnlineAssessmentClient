@@ -70,26 +70,25 @@ public class ActivityChooseExam extends AppCompatActivity
 
         Toast.makeText(this.getApplicationContext(), "Xeahhhh", Toast.LENGTH_SHORT).show();
 
-        Log.v(Globals.TAG, "bin hier");
-
         AlertDialog alertDialog = new AlertDialog.Builder(
                 ActivityChooseExam.this).create();
         alertDialog.setTitle("Start Exam"); //set title
         alertDialog.setMessage("Do you want to start the selected exam Math 1?"); //set Message
         alertDialog.setIcon(R.drawable.ic_launcher_background); //set icon/image
 
-        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        });
         alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
                 Intent demoIntent = new Intent(getApplicationContext(), ActivityPassExam.class);
-                startActivity(demoIntent);
+                ActivityChooseExam.this.startActivity(demoIntent);
+            }
+        });
+        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
             }
         });
 

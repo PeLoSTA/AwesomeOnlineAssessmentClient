@@ -7,19 +7,19 @@ import android.os.Parcelable;
  * Created by Peter on 20.01.2018.
  */
 
-public class QuestionSingleAnswer implements Parcelable {
+public class SingleQuestionDescriptor implements Parcelable {
 
     /**
      * static field used to regenerate object, individually or as arrays
      */
-    public static final Parcelable.Creator<QuestionSingleAnswer> CREATOR =
-            new Parcelable.Creator<QuestionSingleAnswer>() {
-                public QuestionSingleAnswer createFromParcel(Parcel pc) {
-                    return new QuestionSingleAnswer(pc);
+    public static final Parcelable.Creator<SingleQuestionDescriptor> CREATOR =
+            new Parcelable.Creator<SingleQuestionDescriptor>() {
+                public SingleQuestionDescriptor createFromParcel(Parcel pc) {
+                    return new SingleQuestionDescriptor(pc);
                 }
 
-                public QuestionSingleAnswer[] newArray(int size) {
-                    return new QuestionSingleAnswer[size];
+                public SingleQuestionDescriptor[] newArray(int size) {
+                    return new SingleQuestionDescriptor[size];
                 }
             };
 
@@ -31,13 +31,13 @@ public class QuestionSingleAnswer implements Parcelable {
     private int usersAnswer;
 
     // no-args c'tor
-    public QuestionSingleAnswer() {
+    public SingleQuestionDescriptor() {
     }
 
     /**
      * c'tor from Parcel, reads back fields IN THE ORDER they were written
      */
-    public QuestionSingleAnswer(Parcel pc) {
+    public SingleQuestionDescriptor(Parcel pc) {
         this.question = pc.readString();
         this.numberAnswers = pc.readInt();
         pc.readStringArray(this.answers);

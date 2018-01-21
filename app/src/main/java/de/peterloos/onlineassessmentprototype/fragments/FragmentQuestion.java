@@ -1,46 +1,59 @@
 package de.peterloos.onlineassessmentprototype.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import de.peterloos.onlineassessmentprototype.R;
-import de.peterloos.onlineassessmentprototype.models.QuestionSingleAnswer;
+import de.peterloos.onlineassessmentprototype.adapters.SingleQuestionAdapter;
+import de.peterloos.onlineassessmentprototype.models.SingleQuestionDescriptor;
+import de.peterloos.onlineassessmentprototype.models.SingleAnswerDTO;
 
 public class FragmentQuestion extends Fragment {
 
-    private static final String ARG_SECTION_NUMBER = "section_number";
+    private TextView textviewQuestionHeader;
+    private TextView textviewQuestion;
+    private ListView listviewAnswers;
 
     public FragmentQuestion() {
         // no-args c'tor required
     }
 
-    public static FragmentQuestion newInstance(int sectionNumber) {
+    public static FragmentQuestion newInstance() {
 
-        FragmentQuestion fragment = new FragmentQuestion();
-        return fragment;
+        return new FragmentQuestion();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_activity_pass_exam, container, false);
+        return inflater.inflate(R.layout.fragment_question, container, false);
+    }
 
-        // TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        // textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+        this.textviewQuestionHeader = view.findViewById(R.id.textviewQuestionHeader);
+        this.textviewQuestion = view.findViewById(R.id.textviewQuestion);
+        this.listviewAnswers = view.findViewById(R.id.listviewAnswers);
 
+        // =============================================================================
+
+        // extract this fragment's question from bundle
         Bundle bundle = this.getArguments();
 
-        QuestionSingleAnswer question;
+        SingleQuestionDescriptor question;
 
         if (bundle != null) {
-            question = bundle.getParcelable("QuestionSingleAnswer");
+            question = bundle.getParcelable("SingleQuestionDescriptor");
         }
         else {
-            question = new QuestionSingleAnswer();
+            question = new SingleQuestionDescriptor();
             question.setQuestion("Internal Error");
             question.setNumberAnswers(3);
             question.setAnswers(new String[] {"","", ""});
@@ -48,11 +61,73 @@ public class FragmentQuestion extends Fragment {
             question.setUsersAnswer(-1);
         }
 
-        // int number = args.getInt(ARG_SECTION_NUMBER);
-        // String title = String.format(Locale.getDefault(), getString(R.string.section_format), number );
+        // =============================================================================
 
-        // textView.setText(question.getQuestion());
+        // setup UI
+        // this.textviewQuestionHeader = view.findViewById(R.id.textviewQuestionHeader);
+        this.textviewQuestionHeader.setText("EINE FRAGE");
+        this.textviewQuestion.setText(question.getQuestion());
 
-        return rootView;
+        SingleAnswerDTO[] dtoAnswers = new SingleAnswerDTO[question.getNumberAnswers()];
+        String[] answers = question.getAnswers();
+        for (int i = 0; i < question.getNumberAnswers(); i++) {
+            SingleAnswerDTO dto = new SingleAnswerDTO(answers[i], 0);
+            dtoAnswers[i] = dto;
+        }
+        SingleQuestionAdapter adapter = new SingleQuestionAdapter(this.getActivity(), dtoAnswers);
+        this.listviewAnswers.setAdapter(adapter);
     }
+
+
+//    @Override
+//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+//        super.onViewCreated(view, savedInstanceState);
+//
+//        // =============================================================================
+//
+//        // want LinearLayout as parent layout
+//        LinearLayout ll = new LinearLayout(this.getContext());
+//        ll.setOrientation(LinearLayout.VERTICAL);
+//        LinearLayout.LayoutParams llLP = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.MATCH_PARENT);
+//        ll.setLayoutParams(llLP);
+//
+//        // adding textview into layout
+//        TextView tv = new TextView(this.getContext());
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.WRAP_CONTENT);
+//
+//        tv.setLayoutParams(lp);
+//        tv.setPadding(8, 8, 8, 8);
+//        ll.addView(tv);
+//
+//        ViewGroup viewGroup = (ViewGroup) view;
+//        viewGroup.addView(ll);
+//
+//        // =============================================================================
+//
+//        // extract this fragment's question from bundle
+//        Bundle bundle = this.getArguments();
+//
+//        SingleQuestionDescriptor question;
+//
+//        if (bundle != null) {
+//            question = bundle.getParcelable("SingleQuestionDescriptor");
+//        }
+//        else {
+//            question = new SingleQuestionDescriptor();
+//            question.setQuestion("Internal Error");
+//            question.setNumberAnswers(3);
+//            question.setAnswers(new String[] {"","", ""});
+//            question.setCorrectAnswer(1);
+//            question.setUsersAnswer(-1);
+//        }
+//
+//        // =============================================================================
+//
+//        // patch dynamically created UI with details of this questions
+//        tv.setText(question.getQuestion());
+//    }
 }

@@ -8,15 +8,15 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.Locale;
 
 import de.peterloos.onlineassessmentprototype.fragments.FragmentQuestion;
-import de.peterloos.onlineassessmentprototype.models.QuestionSingleAnswer;
+import de.peterloos.onlineassessmentprototype.models.SingleQuestionDescriptor;
 
 /**
  * Created by Peter on 20.01.2018.
  */
 
-public class QuestionsPagerAdapter extends FragmentPagerAdapter {
+public class AssessmentPagerAdapter extends FragmentPagerAdapter {
 
-    public QuestionsPagerAdapter(FragmentManager fm) {
+    public AssessmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -24,8 +24,8 @@ public class QuestionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         // setup data for corresponding fragment
-        QuestionSingleAnswer question = new QuestionSingleAnswer();
-        String s = String.format(Locale.getDefault(), "Awesome %d. awesome Question", position);
+        SingleQuestionDescriptor question = new SingleQuestionDescriptor();
+        String s = String.format(Locale.getDefault(), "Awesome %d. question", position);
         question.setQuestion(s);
         question.setNumberAnswers(3);
         question.setAnswers(new String[] {"Erste Antwort","Zweite Antwort", "Dritte Antwort"});
@@ -34,9 +34,9 @@ public class QuestionsPagerAdapter extends FragmentPagerAdapter {
 
         // FragmentQuestion fragment = new FragmentQuestion();
 
-        Fragment fragment = FragmentQuestion.newInstance(position + 1);
+        Fragment fragment = FragmentQuestion.newInstance();
         Bundle bundle = new Bundle();
-        bundle.putParcelable("QuestionSingleAnswer", question);
+        bundle.putParcelable("SingleQuestionDescriptor", question);
         fragment.setArguments(bundle);
         return fragment;
     }
