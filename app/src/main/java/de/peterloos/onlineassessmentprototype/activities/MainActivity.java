@@ -9,8 +9,6 @@ package de.peterloos.onlineassessmentprototype.activities;
 
 // http://fundoocode.net/android-listview-checkbox-example-onitemclicklistener-and-onclicklistener/
 
-
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

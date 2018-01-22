@@ -9,16 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
 import de.peterloos.onlineassessmentprototype.Globals;
 import de.peterloos.onlineassessmentprototype.R;
+import de.peterloos.onlineassessmentprototype.adapters.OnAnswerSelectedListener;
 import de.peterloos.onlineassessmentprototype.adapters.SingleQuestionAdapter;
 import de.peterloos.onlineassessmentprototype.models.SingleQuestionDescriptor;
 import de.peterloos.onlineassessmentprototype.models.SingleAnswerDTO;
 
-public class FragmentQuestion extends Fragment {
+public class FragmentQuestion extends Fragment implements OnAnswerSelectedListener {
 
     private TextView textviewQuestionHeader;
     private TextView textviewQuestion;
@@ -83,7 +85,17 @@ public class FragmentQuestion extends Fragment {
             dtoAnswers[i] = dto;
         }
         SingleQuestionAdapter adapter = new SingleQuestionAdapter(this.getActivity(), dtoAnswers);
+        adapter.setOnAnswerChanged (this);
         this.listviewAnswers.setAdapter(adapter);
+    }
+
+    @Override
+    public void answerSelected(int position, boolean checked) {
+
+        Toast.makeText(
+                this.getContext(),
+                "Clicked on Checkbox: Position " + position + " is " + checked,
+                Toast.LENGTH_LONG).show();
     }
 
 //    @Override
