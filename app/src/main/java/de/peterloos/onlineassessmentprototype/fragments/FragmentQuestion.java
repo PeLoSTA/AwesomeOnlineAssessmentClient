@@ -86,7 +86,7 @@ public class FragmentQuestion extends Fragment implements OnAnswerSelectedListen
 
         // setup UI
         int number = question.getQuestionNumber();
-        String header = String.format(Locale.getDefault(),"Frage %d:", number);
+        String header = String.format(Locale.getDefault(),"Frage %d:", number + 1);
         this.textviewQuestionHeader.setText(header);
         this.textviewQuestion.setText(question.getQuestion());
 
