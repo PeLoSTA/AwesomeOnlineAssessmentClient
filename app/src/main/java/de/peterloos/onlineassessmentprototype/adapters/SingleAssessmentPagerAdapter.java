@@ -46,6 +46,14 @@ public class SingleAssessmentPagerAdapter extends FragmentPagerAdapter {
         return MaxQuestions;
     }
 
+    // public interface
+    public void updateAnswer (int questionNumber, int answerPosition, boolean checked) {
+
+        this.exam[questionNumber].setUsersAnswer(answerPosition, checked);
+
+        Log.v(Globals.TAG, "PagerAdapter ### ===> Frage = " + questionNumber + ", Antwort zu " + answerPosition + ", checked = " + checked);
+    }
+
     // private helper methods
     private void setupExam() {
 

@@ -7,11 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import de.peterloos.onlineassessmentprototype.R;
 import de.peterloos.onlineassessmentprototype.adapters.SingleAssessmentPagerAdapter;
+import de.peterloos.onlineassessmentprototype.fragments.FragmentQuestion;
 
-public class ActivityPassExam extends AppCompatActivity {
+public class ActivityPassExam extends AppCompatActivity  implements FragmentQuestion.OnQuestionAnsweredListener {
 
     /**
      * The android.support.v4.view.PagerAdapter that will provide
@@ -60,5 +62,16 @@ public class ActivityPassExam extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void answerSelected(int questionNumber, int answerPosition, boolean checked) {
+
+        Toast.makeText(
+                this.getBaseContext(),
+                "Question No. " + questionNumber + ", Answer No. " + answerPosition + ": Checked = " + checked,
+                Toast.LENGTH_LONG).show();
+
+        pagerAdapter.updateAnswer(questionNumber, answerPosition, checked);
     }
 }

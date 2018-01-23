@@ -10,7 +10,7 @@ import android.os.Parcelable;
 public class SingleQuestionDescriptor implements Parcelable {
 
     /**
-     * static field used to regenerate object, individually or as arrays
+     * static field used to regenerate object, individually or as array
      */
     public static final Parcelable.Creator<SingleQuestionDescriptor> CREATOR =
             new Parcelable.Creator<SingleQuestionDescriptor>() {
@@ -29,11 +29,11 @@ public class SingleQuestionDescriptor implements Parcelable {
     private int numberAnswers;
     private String[] answers;
     private int correctAnswer;
-    private int usersAnswer;
+    // private int usersAnswer;
+    private boolean[] usersAnswers;
 
     // no-args c'tor
     public SingleQuestionDescriptor() {
-        this.usersAnswer = -1;
     }
 
     /**
@@ -45,7 +45,7 @@ public class SingleQuestionDescriptor implements Parcelable {
         this.numberAnswers = pc.readInt();
         pc.readStringArray(this.answers);
         this.correctAnswer = pc.readInt();
-        this.correctAnswer = pc.readInt();
+        pc.readBooleanArray(this.usersAnswers);
     }
 
     // getter / setter methods
@@ -71,6 +71,9 @@ public class SingleQuestionDescriptor implements Parcelable {
 
     public void setNumberAnswers(int numberAnswers) {
         this.numberAnswers = numberAnswers;
+
+        // allocate array of boolean values according to user's answers
+        this.usersAnswers = new boolean[this.numberAnswers];
     }
 
     public String[] getAnswers() {
@@ -89,12 +92,12 @@ public class SingleQuestionDescriptor implements Parcelable {
         this.correctAnswer = correctAnswer;
     }
 
-    public int getUsersAnswer() {
-        return usersAnswer;
+    public boolean getUsersAnswer(int index) {
+        return usersAnswers[index];
     }
 
-    public void setUsersAnswer(int usersAnswer) {
-        this.usersAnswer = usersAnswer;
+    public void setUsersAnswer(int index, boolean value) {
+        usersAnswers[index] = value;
     }
 
     @Override
@@ -109,6 +112,6 @@ public class SingleQuestionDescriptor implements Parcelable {
         parcel.writeInt(this.numberAnswers);
         parcel.writeStringArray(this.answers);
         parcel.writeInt(this.correctAnswer);
-        parcel.writeInt(this.usersAnswer);
+        parcel.writeBooleanArray(this.usersAnswers);
     }
 }

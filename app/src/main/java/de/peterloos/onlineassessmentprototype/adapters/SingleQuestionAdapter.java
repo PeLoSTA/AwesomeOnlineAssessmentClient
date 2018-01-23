@@ -18,16 +18,16 @@ import de.peterloos.onlineassessmentprototype.models.SingleAnswerDTO;
 
 public class SingleQuestionAdapter extends ArrayAdapter<SingleAnswerDTO> {
 
-    private SingleAnswerDTO[] items;
+    private SingleAnswerDTO[] dto;
     private Context context;
 
     private OnAnswerSelectedListener listener;
 
-    public SingleQuestionAdapter(@NonNull Context context, @NonNull SingleAnswerDTO[] items) {
-        super(context, R.layout.question_row, items);
+    public SingleQuestionAdapter(@NonNull Context context, @NonNull SingleAnswerDTO[] dto) {
+        super(context, R.layout.question_row, dto);
 
         this.context = context;
-        this.items = items;
+        this.dto = dto;
     }
 
     // public interface
@@ -58,8 +58,8 @@ public class SingleQuestionAdapter extends ArrayAdapter<SingleAnswerDTO> {
             viewHolder = (ViewHolderItem) convertView.getTag();
         }
 
-        viewHolder.checkbox.setText(this.items[position].getAnswer());
-        viewHolder.checkbox.setChecked(false);
+        viewHolder.checkbox.setText(this.dto[position].getAnswer());
+        viewHolder.checkbox.setChecked( (this.dto[position].getValue() == 1) ? true : false);
         viewHolder.checkbox.setTag(new Integer(position));
 
         viewHolder.checkbox.setOnClickListener(new View.OnClickListener() {

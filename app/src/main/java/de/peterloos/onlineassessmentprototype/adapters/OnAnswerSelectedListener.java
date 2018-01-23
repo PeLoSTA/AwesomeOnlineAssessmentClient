@@ -8,4 +8,3 @@ public interface OnAnswerSelectedListener {
 
     void answerSelected(int position, boolean checked);
 }
-
